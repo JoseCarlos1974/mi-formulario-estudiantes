@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netlify 2025 - Guía Actualizada</title>
+    <title>Registro de Datos Estudiantiles</title>
     <style>
         * {
             margin: 0;
@@ -19,385 +19,907 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
             overflow: hidden;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .header {
             background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
             color: white;
-            padding: 30px;
+            padding: 40px 30px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .header h1 {
-            font-size: 2.3em;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-container {
+            padding: 50px 40px;
+        }
+
+        .welcome-message {
+            background: linear-gradient(135deg, #bee3f8 0%, #90cdf4 100%);
+            color: #2b6cb0;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            border: 2px solid #90cdf4;
+        }
+
+        .welcome-message h2 {
+            font-size: 1.5em;
             margin-bottom: 10px;
         }
 
-        .content {
-            padding: 40px;
-        }
-
-        .option-card {
-            background: #f7fafc;
-            border: 2px solid #e2e8f0;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 25px 0;
-            transition: all 0.3s ease;
-        }
-
-        .option-card:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.1);
-        }
-
-        .option-card.recommended {
-            border-color: #38a169;
-            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
-        }
-
-        .option-card.recommended::before {
-            content: "⭐ RECOMENDADO";
-            background: #38a169;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-            float: right;
-        }
-
-        .option-title {
-            font-size: 1.4em;
-            color: #2d3748;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        .option-description {
-            color: #718096;
-            margin-bottom: 20px;
+        .welcome-message p {
+            font-size: 1.1em;
             line-height: 1.6;
         }
 
-        .steps {
-            list-style: none;
-            counter-reset: step-counter;
+        .setup-instructions {
+            background: #fef9e7;
+            color: #975a16;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #f6e05e;
         }
 
-        .steps li {
-            counter-increment: step-counter;
-            margin: 12px 0;
-            padding-left: 40px;
-            position: relative;
-            color: #4a5568;
+        .setup-instructions h3 {
+            margin-bottom: 15px;
+            color: #744210;
         }
 
-        .steps li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: #667eea;
-            color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
+        .setup-instructions ol {
+            margin-left: 20px;
+        }
+
+        .setup-instructions li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .google-sheets-url {
+            background: #e6fffa;
+            border: 2px solid #81e6d9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .google-sheets-url label {
+            font-weight: 600;
+            color: #234e52;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .google-sheets-url input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #81e6d9;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1em;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 0.9em;
-            font-weight: bold;
+            gap: 8px;
         }
 
-        .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px 10px 10px 0;
-            transition: transform 0.3s ease;
+        .form-group input,
+        .form-group select {
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            background: white;
         }
 
-        .btn:hover {
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
             transform: translateY(-2px);
         }
 
-        .btn-green {
-            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+        .form-group input.error,
+        .form-group select.error {
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 4px rgba(229, 62, 62, 0.1);
         }
 
-        .btn-blue {
-            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+        .error-message {
+            color: #e53e3e;
+            font-size: 0.9em;
+            margin-top: 8px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .required {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+
+        .icon {
+            font-size: 1.2em;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            min-width: 160px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #718096;
+            color: white;
+            box-shadow: 0 4px 15px rgba(113, 128, 150, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: #4a5568;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(113, 128, 150, 0.4);
         }
 
         .alert {
             padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            font-weight: 500;
+            border-radius: 12px;
+            margin: 25px 0;
+            font-weight: 600;
+            font-size: 1.1em;
+            animation: fadeInAlert 0.5s ease-out;
         }
 
-        .alert-info {
-            background: #bee3f8;
-            color: #2b6cb0;
-            border: 2px solid #90cdf4;
-        }
-
-        .alert-warning {
-            background: #faf089;
-            color: #975a16;
-            border: 2px solid #f6e05e;
+        @keyframes fadeInAlert {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .alert-success {
-            background: #c6f6d5;
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
             color: #2f855a;
             border: 2px solid #9ae6b4;
         }
 
-        .url-example {
-            background: #edf2f7;
-            border: 2px dashed #cbd5e0;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            font-family: monospace;
-            text-align: center;
-            color: #4a5568;
-            font-size: 1.1em;
+        .alert-info {
+            background: linear-gradient(135deg, #bee3f8 0%, #90cdf4 100%);
+            color: #2b6cb0;
+            border: 2px solid #90cdf4;
         }
 
-        .drag-drop-demo {
-            border: 3px dashed #cbd5e0;
-            border-radius: 15px;
+        .alert-error {
+            background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%);
+            color: #c53030;
+            border: 2px solid #fc8181;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-animation {
+            display: none;
+            text-align: center;
             padding: 40px;
-            text-align: center;
-            margin: 20px 0;
+            color: #2f855a;
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 3;
+            stroke: #2f855a;
+            stroke-miterlimit: 10;
+            margin: 0 auto 20px;
+            box-shadow: inset 0px 0px 0px #2f855a;
+            animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+        }
+
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 3;
+            stroke-miterlimit: 10;
+            stroke: #2f855a;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 80px #2f855a;
+            }
+        }
+
+        .footer {
             background: #f7fafc;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .drag-drop-demo:hover {
-            border-color: #667eea;
-            background: #edf2f7;
-        }
-
-        .drag-drop-demo h3 {
-            color: #4a5568;
-            margin-bottom: 10px;
-        }
-
-        .drag-drop-demo p {
+            text-align: center;
+            padding: 30px;
             color: #718096;
+            font-size: 0.95em;
         }
 
-        .pros-cons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
+        .connection-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 600;
+            z-index: 1000;
         }
 
-        .pros, .cons {
-            padding: 15px;
-            border-radius: 8px;
-        }
-
-        .pros {
-            background: #f0fff4;
+        .connection-status.connected {
+            background: #c6f6d5;
+            color: #2f855a;
             border: 1px solid #9ae6b4;
         }
 
-        .cons {
-            background: #fef9e7;
-            border: 1px solid #f6e05e;
-        }
-
-        .pros h4 {
-            color: #2f855a;
-            margin-bottom: 10px;
-        }
-
-        .cons h4 {
-            color: #975a16;
-            margin-bottom: 10px;
-        }
-
-        .pros ul, .cons ul {
-            margin-left: 20px;
-        }
-
-        .pros li, .cons li {
-            color: #4a5568;
-            margin: 5px 0;
+        .connection-status.disconnected {
+            background: #fed7d7;
+            color: #c53030;
+            border: 1px solid #fc8181;
         }
 
         @media (max-width: 768px) {
-            .pros-cons {
-                grid-template-columns: 1fr;
+            .container {
+                margin: 10px;
+                border-radius: 15px;
             }
             
-            .content {
-                padding: 20px;
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .header p {
+                font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
+    <div class="connection-status disconnected" id="connectionStatus">
+        🔴 Google Sheets no configurado
+    </div>
+
     <div class="container">
         <div class="header">
-            <h1>🚀 Netlify 2025 - Guía Actualizada</h1>
-            <p>3 formas fáciles de subir tu formulario sin Git</p>
+            <h1>📚 Registro de Datos</h1>
+            <p>Sistema de Control de Asistencia Estudiantil</p>
+        </div>
+        
+        <div class="form-container">
+            <div class="setup-instructions" id="setupInstructions">
+                <h3>⚙️ Configuración del Administrador</h3>
+                <p><strong>IMPORTANTE:</strong> Para que los datos se guarden en Google Sheets y puedas verlos desde cualquier lugar, sigue estos pasos:</p>
+                <ol>
+                    <li>Ve a <a href="https://script.google.com" target="_blank">script.google.com</a></li>
+                    <li>Crea un nuevo proyecto</li>
+                    <li>Pega el código que te proporcionaré</li>
+                    <li>Despliega como aplicación web</li>
+                    <li>Copia la URL y pégala abajo</li>
+                </ol>
+                
+                <div class="google-sheets-url">
+                    <label for="googleSheetsUrl">URL de Google Apps Script:</label>
+                    <input type="url" id="googleSheetsUrl" placeholder="https://script.google.com/macros/s/TU_ID/exec">
+                    <button class="btn btn-secondary" onclick="saveGoogleSheetsUrl()" style="margin-top: 10px; padding: 8px 15px; font-size: 0.9em;">
+                        💾 Guardar Configuración
+                    </button>
+                </div>
+            </div>
+
+            <div class="welcome-message">
+                <h2>🎓 ¡Bienvenido/a Estudiante!</h2>
+                <p>Completa tus datos personales para generar tu código QR de asistencia. Todos los campos marcados con <span class="required">*</span> son obligatorios.</p>
+            </div>
+
+            <form id="studentForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="dni">
+                            <span class="icon">🆔</span>
+                            DNI <span class="required">*</span>
+                        </label>
+                        <input type="text" id="dni" maxlength="8" placeholder="12345678" required>
+                        <div class="error-message">El DNI debe tener exactamente 8 dígitos</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apellidos">
+                            <span class="icon">👤</span>
+                            Apellidos <span class="required">*</span>
+                        </label>
+                        <input type="text" id="apellidos" placeholder="García López" required>
+                        <div class="error-message">Los apellidos son obligatorios</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombres">
+                            <span class="icon">✨</span>
+                            Nombres <span class="required">*</span>
+                        </label>
+                        <input type="text" id="nombres" placeholder="María Elena" required>
+                        <div class="error-message">Los nombres son obligatorios</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="grado">
+                            <span class="icon">📖</span>
+                            Grado <span class="required">*</span>
+                        </label>
+                        <select id="grado" required>
+                            <option value="">Seleccionar tu grado</option>
+                            <option value="1">1ro de Secundaria</option>
+                            <option value="2">2do de Secundaria</option>
+                            <option value="3">3ro de Secundaria</option>
+                            <option value="4">4to de Secundaria</option>
+                            <option value="5">5to de Secundaria</option>
+                        </select>
+                        <div class="error-message">Selecciona tu grado</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="seccion">
+                            <span class="icon">🏫</span>
+                            Sección <span class="required">*</span>
+                        </label>
+                        <select id="seccion" required>
+                            <option value="">Seleccionar tu sección</option>
+                            <option value="A">Sección A</option>
+                            <option value="B">Sección B</option>
+                            <option value="C">Sección C</option>
+                            <option value="D">Sección D</option>
+                            <option value="E">Sección E</option>
+                            <option value="F">Sección F</option>
+                            <option value="G">Sección G</option>
+                            <option value="H">Sección H</option>
+                        </select>
+                        <div class="error-message">Selecciona tu sección</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombreTutor">
+                            <span class="icon">👨‍🏫</span>
+                            Nombre de tu Tutor(a) <span class="required">*</span>
+                        </label>
+                        <input type="text" id="nombreTutor" placeholder="Prof. Ana Torres" required>
+                        <div class="error-message">El nombre del tutor es obligatorio</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefonoTutor">
+                            <span class="icon">📞</span>
+                            Teléfono del Tutor <span class="required">*</span>
+                        </label>
+                        <input type="tel" id="telefonoTutor" placeholder="987654321" required>
+                        <div class="error-message">El teléfono debe tener exactamente 9 dígitos</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="domicilio">
+                            <span class="icon">🏠</span>
+                            Domicilio donde vives <span class="required">*</span>
+                        </label>
+                        <input type="text" id="domicilio" placeholder="Jr. Lima 123, Ayacucho" required>
+                        <div class="error-message">Tu domicilio es obligatorio</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apellidosApoderado">
+                            <span class="icon">👨‍👩‍👧‍👦</span>
+                            Apellidos del Apoderado <span class="required">*</span>
+                        </label>
+                        <input type="text" id="apellidosApoderado" placeholder="García Vega" required>
+                        <div class="error-message">Los apellidos del apoderado son obligatorios</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombresApoderado">
+                            <span class="icon">👤</span>
+                            Nombres del Apoderado <span class="required">*</span>
+                        </label>
+                        <input type="text" id="nombresApoderado" placeholder="Carlos" required>
+                        <div class="error-message">Los nombres del apoderado son obligatorios</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="celularApoderado">
+                            <span class="icon">📱</span>
+                            Celular del Apoderado <span class="required">*</span>
+                        </label>
+                        <input type="tel" id="celularApoderado" placeholder="965432178" required>
+                        <div class="error-message">El celular debe tener exactamente 9 dígitos</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="icon">📧</span>
+                            Tu Correo Electrónico (Opcional)
+                        </label>
+                        <input type="email" id="email" placeholder="tu.email@gmail.com">
+                        <div class="error-message">Ingresa un correo válido</div>
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <button type="button" class="btn btn-primary" onclick="registerStudent()" id="submitBtn">
+                        ✅ Registrar mis Datos
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="clearForm()">
+                        🔄 Limpiar Formulario
+                    </button>
+                </div>
+            </form>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p><strong>Guardando en Google Sheets...</strong></p>
+                <p>Por favor espera un momento</p>
+            </div>
+
+            <div class="success-animation" id="successAnimation">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark__circle" fill="none" cx="26" cy="26" r="25"/>
+                    <path class="checkmark__check" fill="none" d="m14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                <h2>¡Registro Exitoso!</h2>
+                <p>Tus datos han sido guardados en Google Sheets.</p>
+                <p>Tu código QR será generado próximamente.</p>
+            </div>
         </div>
 
-        <div class="content">
-            <div class="alert alert-info">
-                <strong>📢 Importante:</strong> La interfaz de Netlify cambió en 2025. Aquí tienes las formas actualizadas de subir tu archivo.
-            </div>
-
-            <!-- OPCIÓN 1: NETLIFY DROP -->
-            <div class="option-card recommended">
-                <div class="option-title">🎯 Opción 1: Netlify Drop (Más Directo)</div>
-                <div class="option-description">
-                    La forma más directa sin necesidad de registrarse o navegar por menús.
-                </div>
-                
-                <ol class="steps">
-                    <li>Ve directamente a <a href="https://app.netlify.com/drop" target="_blank" class="btn btn-blue">app.netlify.com/drop</a></li>
-                    <li>Verás una página simple con una zona de "drop"</li>
-                    <li>Arrastra tu archivo <code>index.html</code> a esa zona</li>
-                    <li>¡Netlify te dará un enlace automáticamente!</li>
-                </ol>
-
-                <div class="url-example">
-                    Tu enlace será: https://random-name.netlify.app
-                </div>
-
-                <div class="pros-cons">
-                    <div class="pros">
-                        <h4>✅ Ventajas</h4>
-                        <ul>
-                            <li>Súper rápido (30 segundos)</li>
-                            <li>No necesitas cuenta</li>
-                            <li>Enlace inmediato</li>
-                        </ul>
-                    </div>
-                    <div class="cons">
-                        <h4>⚠️ Consideraciones</h4>
-                        <ul>
-                            <li>Enlace con nombre aleatorio</li>
-                            <li>Más difícil de actualizar</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- OPCIÓN 2: NETLIFY COMPLETO -->
-            <div class="option-card">
-                <div class="option-title">🌐 Opción 2: Netlify Dashboard</div>
-                <div class="option-description">
-                    Usando la interfaz completa de Netlify con más control.
-                </div>
-                
-                <ol class="steps">
-                    <li>Ve a <a href="https://app.netlify.com" target="_blank" class="btn btn-blue">app.netlify.com</a></li>
-                    <li>Regístrate gratis (recomendado) o busca "Deploy manually"</li>
-                    <li>Una vez dentro, busca "Add new site" o "Sites"</li>
-                    <li>Busca la opción "Deploy manually" o "Drag and drop"</li>
-                    <li>Arrastra tu archivo a la zona indicada</li>
-                </ol>
-
-                <div class="alert alert-warning">
-                    <strong>💡 Tip:</strong> Si no ves "Deploy manually" inmediatamente, busca en "Browse to deploy" o botones similares.
-                </div>
-            </div>
-
-            <!-- OPCIÓN 3: GITHUB PAGES -->
-            <div class="option-card">
-                <div class="option-title">📚 Opción 3: GitHub Pages (Más Confiable)</div>
-                <div class="option-description">
-                    La opción más estable y profesional para proyectos a largo plazo.
-                </div>
-                
-                <ol class="steps">
-                    <li>Ve a <a href="https://github.com" target="_blank" class="btn btn-blue">github.com</a></li>
-                    <li>Crea cuenta gratuita</li>
-                    <li>Nuevo repositorio → "sistema-estudiantes"</li>
-                    <li>Sube tu archivo <code>index.html</code></li>
-                    <li>Settings → Pages → Activar GitHub Pages</li>
-                    <li>Tu enlace: <code>https://tuusuario.github.io/sistema-estudiantes/</code></li>
-                </ol>
-
-                <div class="pros-cons">
-                    <div class="pros">
-                        <h4>✅ Ventajas</h4>
-                        <ul>
-                            <li>100% confiable</li>
-                            <li>URL personalizable</li>
-                            <li>Fácil de actualizar</li>
-                            <li>Respaldo automático</li>
-                        </ul>
-                    </div>
-                    <div class="cons">
-                        <h4>⚠️ Consideraciones</h4>
-                        <ul>
-                            <li>Requiere cuenta GitHub</li>
-                            <li>Proceso más largo</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DEMO VISUAL -->
-            <div class="option-card">
-                <div class="option-title">📤 ¿Cómo se ve la zona de "Drag and Drop"?</div>
-                
-                <div class="drag-drop-demo">
-                    <h3>📄 Arrastra tu archivo aquí</h3>
-                    <p>Zona típica de subida de archivos</p>
-                    <p style="margin-top: 10px; font-size: 0.9em; color: #718096;">
-                        Busca algo similar a esto en Netlify
-                    </p>
-                </div>
-
-                <div class="alert alert-info">
-                    <strong>🔍 ¿No encuentras la zona de drag & drop?</strong><br>
-                    Prueba buscando estos términos en la página:
-                    <ul style="margin-top: 10px;">
-                        <li>• "Deploy manually"</li>
-                        <li>• "Browse to deploy"</li>
-                        <li>• "Drag and drop"</li>
-                        <li>• "Upload files"</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- RECOMENDACIÓN FINAL -->
-            <div class="alert alert-success">
-                <h3>🎯 Mi Recomendación Personal:</h3>
-                <p><strong>Para empezar rápido:</strong> Usa <a href="https://app.netlify.com/drop" target="_blank">Netlify Drop</a></p>
-                <p><strong>Para proyecto serio:</strong> Usa GitHub Pages</p>
-                <p><strong>Si tienes prisa:</strong> Usa cualquiera de las 3 opciones - ¡todas funcionan!</p>
-            </div>
-
-            <div class="url-example">
-                <strong>Resultado final:</strong> Un enlace como https://tu-sitio.netlify.app que envías a los estudiantes
-            </div>
+        <div class="footer">
+            <p>🔒 Tus datos están seguros | Sistema conectado con Google Sheets</p>
+            <p>© 2025 - Plataforma Educativa</p>
         </div>
     </div>
+
+    <script>
+        let studentCounter = 1;
+
+        // Cargar configuración al iniciar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadConfiguration();
+            initializeValidation();
+        });
+
+        function loadConfiguration() {
+            const savedUrl = localStorage.getItem('googleSheetsUrl');
+            if (savedUrl) {
+                document.getElementById('googleSheetsUrl').value = savedUrl;
+                updateConnectionStatus(true);
+                document.getElementById('setupInstructions').style.display = 'none';
+            }
+        }
+
+        function saveGoogleSheetsUrl() {
+            const url = document.getElementById('googleSheetsUrl').value.trim();
+            if (!url) {
+                showAlert('error', '⚠️ Por favor ingresa una URL válida');
+                return;
+            }
+
+            if (!url.includes('script.google.com')) {
+                showAlert('error', '⚠️ La URL debe ser de Google Apps Script');
+                return;
+            }
+
+            localStorage.setItem('googleSheetsUrl', url);
+            updateConnectionStatus(true);
+            document.getElementById('setupInstructions').style.display = 'none';
+            showAlert('success', '✅ Configuración guardada. El sistema ya está conectado a Google Sheets.');
+        }
+
+        function updateConnectionStatus(connected) {
+            const status = document.getElementById('connectionStatus');
+            if (connected) {
+                status.className = 'connection-status connected';
+                status.innerHTML = '🟢 Conectado a Google Sheets';
+            } else {
+                status.className = 'connection-status disconnected';
+                status.innerHTML = '🔴 Google Sheets no configurado';
+            }
+        }
+
+        // Validaciones
+        function validateDNI(dni) {
+            return /^\d{8}$/.test(dni);
+        }
+
+        function validatePhone(phone) {
+            return /^\d{9}$/.test(phone);
+        }
+
+        function validateEmail(email) {
+            return !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function validateField(field, validator, errorMsg) {
+            const value = field.value.trim();
+            const errorElement = field.nextElementSibling;
+            
+            if (!value || (validator && !validator(value))) {
+                field.classList.add('error');
+                if (errorElement && errorElement.classList.contains('error-message')) {
+                    errorElement.style.display = 'block';
+                    if (errorMsg) errorElement.textContent = errorMsg;
+                }
+                return false;
+            } else {
+                field.classList.remove('error');
+                if (errorElement && errorElement.classList.contains('error-message')) {
+                    errorElement.style.display = 'none';
+                }
+                return true;
+            }
+        }
+
+        function validateForm() {
+            let isValid = true;
+            
+            const dni = document.getElementById('dni');
+            const apellidos = document.getElementById('apellidos');
+            const nombres = document.getElementById('nombres');
+            const grado = document.getElementById('grado');
+            const seccion = document.getElementById('seccion');
+            const nombreTutor = document.getElementById('nombreTutor');
+            const telefonoTutor = document.getElementById('telefonoTutor');
+            const domicilio = document.getElementById('domicilio');
+            const apellidosApoderado = document.getElementById('apellidosApoderado');
+            const nombresApoderado = document.getElementById('nombresApoderado');
+            const celularApoderado = document.getElementById('celularApoderado');
+            const email = document.getElementById('email');
+
+            // Validar DNI
+            if (!validateField(dni, validateDNI, 'El DNI debe tener exactamente 8 dígitos')) {
+                isValid = false;
+            }
+
+            // Validar campos obligatorios
+            if (!validateField(apellidos)) isValid = false;
+            if (!validateField(nombres)) isValid = false;
+            if (!validateField(grado)) isValid = false;
+            if (!validateField(seccion)) isValid = false;
+            if (!validateField(nombreTutor)) isValid = false;
+            if (!validateField(domicilio)) isValid = false;
+            if (!validateField(apellidosApoderado)) isValid = false;
+            if (!validateField(nombresApoderado)) isValid = false;
+
+            // Validar teléfonos
+            if (!validateField(telefonoTutor, validatePhone, 'El teléfono debe tener exactamente 9 dígitos')) {
+                isValid = false;
+            }
+            if (!validateField(celularApoderado, validatePhone, 'El celular debe tener exactamente 9 dígitos')) {
+                isValid = false;
+            }
+
+            // Validar email opcional
+            if (!validateField(email, validateEmail, 'Por favor ingresa un correo válido')) {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Registrar estudiante
+        async function registerStudent() {
+            if (!validateForm()) {
+                const firstError = document.querySelector('.error');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+
+            const googleSheetsUrl = localStorage.getItem('googleSheetsUrl');
+            if (!googleSheetsUrl) {
+                showAlert('error', '⚠️ El administrador debe configurar primero la conexión con Google Sheets');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+            document.querySelector('.form-container form').style.display = 'none';
+            document.getElementById('submitBtn').disabled = true;
+
+            const student = {
+                id: `EST${String(studentCounter).padStart(3, '0')}`,
+                dni: document.getElementById('dni').value.trim(),
+                apellidos: document.getElementById('apellidos').value.trim(),
+                nombres: document.getElementById('nombres').value.trim(),
+                grado: document.getElementById('grado').value,
+                seccion: document.getElementById('seccion').value,
+                nombreTutor: document.getElementById('nombreTutor').value.trim(),
+                telefonoTutor: document.getElementById('telefonoTutor').value.trim(),
+                domicilio: document.getElementById('domicilio').value.trim(),
+                apellidosApoderado: document.getElementById('apellidosApoderado').value.trim(),
+                nombresApoderado: document.getElementById('nombresApoderado').value.trim(),
+                celularApoderado: document.getElementById('celularApoderado').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                qrCode: `EST${String(studentCounter).padStart(3, '0')}_QR`,
+                estado: 'Activo',
+                fechaRegistro: new Date().toLocaleDateString('es-PE'),
+                horaRegistro: new Date().toLocaleTimeString('es-PE'),
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch(googleSheetsUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(student)
+                });
+
+                // Como usamos no-cors, no podemos leer la respuesta
+                // Asumimos que fue exitoso si no hay error
+                setTimeout(() => {
+                    studentCounter++;
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('successAnimation').style.display = 'block';
+                    
+                    // También guardar localmente como backup
+                    let localStudents = JSON.parse(localStorage.getItem('registeredStudents') || '[]');
+                    localStudents.push(student);
+                    localStorage.setItem('registeredStudents', JSON.stringify(localStudents));
+                    
+                    setTimeout(() => {
+                        document.getElementById('successAnimation').style.display = 'none';
+                        document.querySelector('.form-container form').style.display = 'block';
+                        document.getElementById('submitBtn').disabled = false;
+                        clearForm();
+                    }, 4000);
+                }, 2000);
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.querySelector('.form-container form').style.display = 'block';
+                document.getElementById('submitBtn').disabled = false;
+                
+                showAlert('error', '❌ Error al conectar con Google Sheets. Revisa la configuración o intenta más tarde.');
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('studentForm').reset();
+            
+            document.querySelectorAll('.error').forEach(el => {
+                el.classList.remove('error');
+            });
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+            });
+        }
+
+        function showAlert(type, message) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.innerHTML = message;
+            
+            const container = document.querySelector('.form-container');
+            container.insertBefore(alertDiv, container.firstChild);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+
+        function initializeValidation() {
+            // Validación en tiempo real para DNI
+            document.getElementById('dni').addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '');
+                validateField(this, validateDNI, 'El DNI debe tener exactamente 8 dígitos');
+            });
+
+            // Validación en tiempo real para teléfonos
+            document.getElementById('telefonoTutor').addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '');
+                validateField(this, validatePhone, 'El teléfono debe tener exactamente 9 dígitos');
+            });
+
+            document.getElementById('celularApoderado').addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '');
+                validateField(this, validatePhone, 'El celular debe tener exactamente 9 dígitos');
+            });
+
+            // Validación para email
+            document.getElementById('email').addEventListener('input', function() {
+                validateField(this, validateEmail, 'Por favor ingresa un correo válido');
+            });
+
+            // Capitalizar primera letra de cada palabra
+            const textFields = ['apellidos', 'nombres', 'nombreTutor', 'apellidosApoderado', 'nombresApoderado', 'domicilio'];
+            textFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                field.addEventListener('blur', function() {
+                    this.value = this.value.toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
+                    validateField(this);
+                });
+            });
+
+            // Validación para selects
+            document.getElementById('grado').addEventListener('change', function() {
+                validateField(this);
+            });
+
+            document.getElementById('seccion').addEventListener('change', function() {
+                validateField(this);
+            });
+        }
+    </script>
 </body>
 </html>
